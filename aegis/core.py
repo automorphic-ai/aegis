@@ -51,7 +51,7 @@ class Aegis:
         prompt: str,
         model_response: str,
         censored_words: list[str] | None = None,
-        censor_similar_words: bool = False,
+        # censor_similar_words: bool = False,
     ):
         """
         Send a prompt and the model's response to Aegis for evaluation.
@@ -70,7 +70,7 @@ class Aegis:
                 "prompt": prompt,
                 "model": model_response,
                 "censored_words": censored_words,
-                "censor_similar_words": censor_similar_words,
+                # "censor_similar_words": censor_similar_words,
             },
         )
         return response.json()

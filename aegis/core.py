@@ -32,6 +32,8 @@ class Aegis:
         (and best in terms of the cost-accuracy tradeoff). 3 is the most expensive and cleverest,
         with the lowest risk of false positives, but also a higher risk of false negatives—
         don't use it unless you're using it alongside an exceptionally intelligent model like GPT-4.
+        :param heuristic_score_threshold: Indicates the tolerable level of lexical similarity to previously seen attacks (between 0 and 1)
+        :param vector_score_threshold: Indicates the tolerable level of semantic similarity to previously seen attacks (between 0 and 1)
         :return: A dictionary of the form `{"detected": bool}`
         """
         response = requests.post(

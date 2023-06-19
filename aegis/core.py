@@ -19,7 +19,7 @@ class Aegis:
         self,
         prompt: str,
         user_input: str,
-        strength: int = 0,
+        strength: int = 1,
         heuristic_score_threshold: float = 0.75,
         vector_score_threshold: float = 0.9,
     ):
@@ -28,10 +28,11 @@ class Aegis:
 
         :param prompt: The prompt/task/system instructions given to the model.
         :param user_input: The user input to evaluate.
-        :param strength: The strength/rigor of the Aegis evaluation (potential values: 0, 1, 2, 3). 0 is the default
+        :param strength: The strength/rigor of Aegis's evaluation (potential values: 1, 2, 3). 1 is the default
         (and best in terms of the cost-accuracy tradeoff). 3 is the most expensive and cleverest,
-        with the lowest risk of false positives—don't use it unless you're using an exceptionally clever model like GPT-4.
-        :return: A dictionary of the form `{"detected": bool, "cost": float, "tokens": int}`
+        with the lowest risk of false positives, but also a higher risk of false negatives—
+        don't use it unless you're using it alongside an exceptionally intelligent model like GPT-4.
+        :return: A dictionary of the form `{"detected": bool}`
         """
         response = requests.post(
             f"{Aegis.BASE_URL}/ingress",
@@ -60,7 +61,7 @@ class Aegis:
         :param model_response: The model's response to evaluate.
         :param censored_words: A list of words to censor in the model's response.
         :param censor_similar_words: Whether or not to censor words semantically similar to those in the censored_words list.
-        :return: A dictionary of the form `{"detected": bool, "cost": float, "tokens": int}`
+        :return: A dictionary of the form `{"detected": bool}`
         """
         response = requests.post(
             f"{Aegis.BASE_URL}/egress",

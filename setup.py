@@ -16,5 +16,6 @@ setup(
     keywords = "llm, language model, security, adversarial attacks, prompt injection, prompt leakage, PII detection, self-hardening, firewall",
     # url = "http://packages.python.org/an_example_pypi_project",
     packages=['aegis'],
+    install_requires=['requests'],
     long_description=read('README.md'),
 )

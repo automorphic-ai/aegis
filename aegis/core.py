@@ -34,8 +34,17 @@ class Aegis:
         don't use it unless you're using it alongside an exceptionally intelligent model like GPT-4.
         :param heuristic_score_threshold: Indicates the tolerable level of lexical similarity to previously seen attacks (between 0 and 1)
         :param vector_score_threshold: Indicates the tolerable level of semantic similarity to previously seen attacks (between 0 and 1)
-        :return: A dictionary of the form `{"detected": bool}`
+        :return: A dictionary of the form `{"detected": bool}` reflecting whether or not an attack was detected.
         """
+        if strength not in [1, 2, 3]:
+            raise ValueError("strength must be 1, 2, or 3")
+
+        if heuristic_score_threshold < 0 or heuristic_score_threshold > 1:
+            raise ValueError("heuristic_score_threshold must be between 0 and 1")
+
+        if vector_score_threshold < 0 or vector_score_threshold > 1:
+            raise ValueError("vector_score_threshold must be between 0 and 1")
+
         response = requests.post(
             f"{Aegis.BASE_URL}/ingress",
             headers={"X-API-Key": self.api_key},
@@ -63,8 +72,11 @@ class Aegis:
         :param model_response: The model's response to evaluate.
         :param censored_words: A list of words to censor in the model's response.
         :param censor_similar_words: Whether or not to censor words semantically similar to those in the censored_words list.
-        :return: A dictionary of the form `{"detected": bool}`
+        :return: A dictionary of the form `{"detected": bool}` reflecting whether or not an attack was detected.
         """
+        if not censored_words:
+            censored_words = []
+
         response = requests.post(
             f"{Aegis.BASE_URL}/egress",
             headers={"X-API-Key": self.api_key},
@@ -91,6 +103,3 @@ class Aegis:
             json={"prompt": prompt, "user": user_input},
         )
         return response.json()
-
-    # def canary(self):
-    #     pass

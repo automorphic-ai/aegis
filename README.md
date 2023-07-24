@@ -3,7 +3,7 @@
 ### *Self-hardening firewall for LLMs*
 Aegis is a self-hardening firewall for large language models. Protect your models and your users from adversarial attacks: [prompt injections](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/), prompt and PII leakage, [toxic language](https://arxiv.org/abs//2306.11698), and more!
 
-
+Try to [break our firewall](https://automorphic.ai/challenge): first to succeed gets $100!
 ## Installation
 To experiment with Aegis, check out the [playground](https://automorphic.ai/playground).
 

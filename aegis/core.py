@@ -52,8 +52,8 @@ class Aegis:
                 "prompt": prompt,
                 "user": user_input,
                 "strength": strength,
-                "heuristic_score": heuristic_score_threshold,
-                "vector_score": vector_score_threshold,
+                "heuristicScore": heuristic_score_threshold,
+                "vectorScore": vector_score_threshold,
             },
         )
         return response.json()

@@ -22,7 +22,7 @@ class Aegis:
         strength: int = 1,
         heuristic_score_threshold: float = 0.75,
         vector_score_threshold: float = 0.9,
-    ):
+    ) -> dict[str, bool]:
         """
         Send a prompt and user input to Aegis for evaluation before sending to the model.
 
@@ -64,7 +64,7 @@ class Aegis:
         model_response: str,
         censored_words: list[str] | None = None,
         # censor_similar_words: bool = False,
-    ):
+    ) -> dict[str, bool]:
         """
         Send a prompt and the model's response to Aegis for evaluation.
 

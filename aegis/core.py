@@ -22,6 +22,7 @@ class Aegis:
         strength: int = 1,
         heuristic_score_threshold: float = 0.75,
         vector_score_threshold: float = 0.9,
+        check_vector: bool = True
     ) -> dict[str, bool]:
         """
         Send a prompt and user input to Aegis for evaluation before sending to the model.
@@ -54,6 +55,7 @@ class Aegis:
                 "strength": strength,
                 "heuristicScore": heuristic_score_threshold,
                 "vectorScore": vector_score_threshold,
+                "check_vector": check_vector
             },
         )
         return response.json()
